@@ -21,7 +21,7 @@ class Shop(models.Model):
     link_two = models.URLField('Вторая ссылка', blank=True, max_length=255)
     link_three = models.URLField('Третья ссылка', blank=True, max_length=255)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    category = models.ManyToManyField(Category, related_name='categories', verbose_name='Категории')
+    categories = models.ManyToManyField(Category, related_name='shops', verbose_name='Категории')
     likes = models.PositiveIntegerField('Лайки', default=0)
     dislikes = models.PositiveIntegerField('Дизайки', default=0)
     rating = models.DecimalField('Общий рейтинг', default=0, decimal_places=2, max_digits=10)

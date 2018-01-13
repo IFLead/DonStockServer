@@ -12,7 +12,7 @@ from .serializers import ShopSerializer
 class ShopList(APIView):
     def get(self, request):
         shops = Shop.objects.all()
-        serializer = ShopSerializer(shops, many=True)
+        serializer = ShopSerializer(shops, many=True, context={"request": request})
         return Response(serializer.data)
 
     def post(self):
