@@ -1,0 +1,20 @@
+version: '2'
+services:
+  interfaceserver:
+    build: .
+    command: daphne -b 0.0.0.0 -p 8000 Fastoran.asgi:channel_layer
+    user: root
+    working_dir: /app/web
+    ports:
+      - 8000:8000
+    env_file: .env
+  workerserver:
+    build: .
+    user: root
+    working_dir: /app/web
+    command: python manage.py runworker #/app/entrypoint-worker.sh
+    env_file: .env
+  database:
+    image: postgres:latest
+  redis:
+    image: redis:latest
