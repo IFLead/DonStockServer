@@ -23,5 +23,5 @@ from REST import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shops/', views.ShopList.as_view()),
-    path('auth/', include('')),
+    path('auth/', include('rest_framework_social_oauth2.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
