@@ -93,9 +93,19 @@ REST_FRAMEWORK = {
 }
 
 AUTHENTICATION_BACKENDS = (
+	'social_core.backends.vk.VKOAuth2',
+	'social_core.backends.google.GooglePlusAuth',
 	'rest_framework_social_oauth2.backends.DjangoOAuth2',
 	'django.contrib.auth.backends.ModelBackend',
 )
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '6331649'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'xU60LE2ww7hGuy7fURck'
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '144970166473-te3qtgve717kothu6401fj1086vemnjt.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'zuz09eoLkj4PAb_0QX0kW33j'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/admin'   # здесь мог бы быть ваш редирект
+SOCIAL_AUTH_GOOGLE_OAUTH2_USE_UNIQUE_USER_ID = True
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
