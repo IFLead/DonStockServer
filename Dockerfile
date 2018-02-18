@@ -1,18 +1,20 @@
 FROM python:3.6
 
-RUN useradd --system app && \
-    mkdir /app && \
-    chown app:app /app && \
+ENV APP_USER donstock
+ENV APP_ROOT /donstock
+RUN mkdir /donstock
+RUN groupadd -r ${APP_USER} \
+    && useradd -r -m \
+    --home-dir ${APP_ROOT} \
+    -s /usr/sbin/nologin \
+    -g ${APP_USER} ${APP_USER}
 
-#COPY web/requirements.txt web/manage.py /app/
-COPY web/ /app/
+WORKDIR ${APP_ROOT}
 
-RUN pip install -r /app/web/requirements.txt
+ADD . ${APP_ROOT}
 
-RUN ["chmod", "+x", "/app/entrypoint-interface.sh"]
-RUN ["chmod", "+x", "/app/entrypoint-worker.sh"]
+RUN pip install -r requirements.txt
 
-VOLUME ["/app"]
-USER app
-WORKDIR /app/web
-ENV PYTHONUNBUFFERED 1
+RUN chmod -R 777 media
+
+USER ${APP_USER}

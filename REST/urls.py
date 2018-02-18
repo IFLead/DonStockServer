@@ -18,10 +18,9 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from REST import views
+from REST.views import ShopList, Votes
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('api/', include('REST.urls')),
-    path('api/auth/', include('rest_framework_social_oauth2.urls')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('shops/', ShopList.as_view()),
+    path('votes/', Votes.as_view()),
+]
