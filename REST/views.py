@@ -4,7 +4,7 @@ from django.http import JsonResponse
 from django.utils.decorators import method_decorator
 from rest_framework.response import Response
 from rest_framework.views import APIView
-
+import json
 from Voting.models import Vote
 from .models import Shop
 from .serializers import ShopSerializer
@@ -31,17 +31,17 @@ class Votes(APIView):
 	@method_decorator(login_required)
 	def post(self, request, format=None):
 		# if if_authorized(request.user) and 'action' in request.POST and 'shop' in request.POST:
-			action = json.loads(request.POST.get('action'))
-			shop_id = request.POST.get('shop', -1)
+			action = request.data.get('action')
+			shop_id = request.data.get('shop')
 			try:
 				shop = Shop.objects.get(id=shop_id)
 			except:
-				return JsonResponse({'status': 'Invalid data'})
+				return Response({'status': 'Invalid data'})
 			if action:
 				status = shop.votes.up(request.user.id)
 			else:
 				status = shop.votes.down(request.user.id)
-			return JsonResponse(
+			return Response(
 				{'status': 'OK', 'rating': shop.calculate_vote_score, 'likes': shop.likes,
 					'dislikes': shop.dislikes, 'vote_status': status[1]})
 

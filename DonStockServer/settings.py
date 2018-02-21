@@ -29,49 +29,49 @@ ALLOWED_HOSTS = ['donstock.ml', '127.0.0.1', 'localhost']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'rest_framework',
-    'REST',
-    'Voting',
-    'oauth2_provider',
-    'social_django',
-    'rest_framework_social_oauth2',
+	'django.contrib.admin',
+	'django.contrib.auth',
+	'django.contrib.contenttypes',
+	'django.contrib.sessions',
+	'django.contrib.messages',
+	'django.contrib.staticfiles',
+	'rest_framework',
+	'REST',
+	'Voting',
+	'oauth2_provider',
+	'social_django',
+	'rest_framework_social_oauth2',
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'django.middleware.security.SecurityMiddleware',
+	'django.contrib.sessions.middleware.SessionMiddleware',
+	'django.middleware.common.CommonMiddleware',
+	'django.middleware.csrf.CsrfViewMiddleware',
+	'django.contrib.auth.middleware.AuthenticationMiddleware',
+	'django.contrib.messages.middleware.MessageMiddleware',
+	'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'DonStockServer.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR, 'templates')]
-        ,
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
-            ],
-        },
-    },
+	{
+		'BACKEND': 'django.template.backends.django.DjangoTemplates',
+		'DIRS': [os.path.join(BASE_DIR, 'templates')]
+		,
+		'APP_DIRS': True,
+		'OPTIONS': {
+			'context_processors': [
+				'django.template.context_processors.debug',
+				'django.template.context_processors.request',
+				'django.contrib.auth.context_processors.auth',
+				'django.contrib.messages.context_processors.messages',
+				'social_django.context_processors.backends',
+				'social_django.context_processors.login_redirect',
+			],
+		},
+	},
 ]
 
 WSGI_APPLICATION = 'DonStockServer.wsgi.application'
@@ -80,39 +80,41 @@ WSGI_APPLICATION = 'DonStockServer.wsgi.application'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    # },
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'donstock',
-        'USER': 'donstock',
-        'PASSWORD': 'blurhd512',
-        'HOST': '165.227.163.99',
-        'PORT': '5432',
-        'CONN_MAX_AGE': None,
-    }
+	# 'default': {
+	#     'ENGINE': 'django.db.backends.sqlite3',
+	#     'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+	# },
+	'default': {
+		'ENGINE': 'django.db.backends.postgresql_psycopg2',
+		'NAME': 'donstock',
+		'USER': 'donstock',
+		'PASSWORD': 'blurhd512',
+		'HOST': '165.227.163.99',
+		'PORT': '5432',
+		'CONN_MAX_AGE': None,
+	}
 }
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        'rest_framework_social_oauth2.authentication.SocialAuthentication',
-    ),
+	'DEFAULT_AUTHENTICATION_CLASSES': (
+		'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+		'rest_framework_social_oauth2.authentication.SocialAuthentication',
+		'rest_framework.authentication.BasicAuthentication',
+		'rest_framework.authentication.SessionAuthentication',
+	),
 }
 
 AUTHENTICATION_BACKENDS = (
-    # Facebook OAuth2
-    'social_core.backends.facebook.FacebookAppOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',
-    # VK OAuth2
-    'social_core.backends.vk.VKOAuth2',
-    # GooglePlus OAuth2
-    'social_core.backends.google.GooglePlusAuth',
-    # Other Stuff
-    'rest_framework_social_oauth2.backends.DjangoOAuth2',
-    'django.contrib.auth.backends.ModelBackend',
+	# Facebook OAuth2
+	'social_core.backends.facebook.FacebookAppOAuth2',
+	'social_core.backends.facebook.FacebookOAuth2',
+		# VK OAuth2
+	'social_core.backends.vk.VKOAuth2',
+		# GooglePlus OAuth2
+	'social_core.backends.google.GooglePlusAuth',
+		# Other Stuff
+	'rest_framework_social_oauth2.backends.DjangoOAuth2',
+	'django.contrib.auth.backends.ModelBackend',
 )
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = '6331649'
@@ -130,18 +132,18 @@ SOCIAL_AUTH_FACEBOOK_SECRET = 'l1CBSDO8t8o3ho1qxJaBygMD5ys'
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators
 
 AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
+	{
+		'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+	},
+	{
+		'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+	},
 ]
 
 # Internationalization
