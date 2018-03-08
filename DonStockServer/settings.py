@@ -110,7 +110,7 @@ SOCIAL_AUTH_VK_OAUTH2_SECRET = 'xU60LE2ww7hGuy7fURck'
 
 SOCIAL_AUTH_GOOGLE_PLUS_KEY = '144970166473-2s4duvd0q88q1apm43k7fkvlr7ips0i7.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '9QmUjsKeCpVD0GYW4PwhpUoG'
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/admin'   # здесь мог бы быть ваш редирект
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'   # здесь мог бы быть ваш редирект
 SOCIAL_AUTH_GOOGLE_OAUTH2_USE_UNIQUE_USER_ID = True
 
 
@@ -151,6 +151,9 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static")
+]
 
 STATIC_URL = '/static/'
 
