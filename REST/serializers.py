@@ -11,10 +11,13 @@ class ImageSerializer(serializers.ModelSerializer):
         model = Photo
         fields = ('url',)
 
-    def get_url(self, car):
-        request = self.context.get('request')
-        photo_url = car.photo.url
-        return request.build_absolute_uri(photo_url)
+    # def get_url(self, car):
+    #     request = self.context.get('request')
+    #     photo_url = car.photo.url
+    #     return request.build_absolute_uri(photo_url)
+    def get_url(self, shop):
+        photo_url = shop.photo.url
+        return photo_url
 
 
 class ShopSerializer(serializers.ModelSerializer):
