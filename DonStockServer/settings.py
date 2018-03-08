@@ -35,11 +35,15 @@ INSTALLED_APPS = [
 	'django.contrib.sessions',
 	'django.contrib.messages',
 	'django.contrib.staticfiles',
+	'corsheaders',
 	'rest_framework',
+	'rest_framework.authtoken',
+	'social_django',
+	'rest_social_auth',
 	'REST',
 	'oauth2_provider',
-	'social_django',
 	'rest_framework_social_oauth2',
+	'Voting'
 ]
 
 MIDDLEWARE = [
@@ -50,9 +54,10 @@ MIDDLEWARE = [
 	'django.contrib.auth.middleware.AuthenticationMiddleware',
 	'django.contrib.messages.middleware.MessageMiddleware',
 	'django.middleware.clickjacking.XFrameOptionsMiddleware',
+	'corsheaders.middleware.CorsMiddleware',
+	'django.middleware.common.CommonMiddleware',
 ]
 
-ROOT_URLCONF = 'DonStockServer.urls'
 
 TEMPLATES = [
 	{
@@ -99,7 +104,8 @@ AUTHENTICATION_BACKENDS = (
 	# VK OAuth2
 	'social_core.backends.vk.VKOAuth2',
 	# GooglePlus OAuth2
-	'social_core.backends.google.GooglePlusAuth',
+	# 'social_core.backends.google.GooglePlusAuth',
+	'social_core.backends.google.GoogleOAuth2',
 	# Other Stuff
 	'rest_framework_social_oauth2.backends.DjangoOAuth2',
 	'django.contrib.auth.backends.ModelBackend',
@@ -108,11 +114,19 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_VK_OAUTH2_KEY = '6331649'
 SOCIAL_AUTH_VK_OAUTH2_SECRET = 'xU60LE2ww7hGuy7fURck'
 
-SOCIAL_AUTH_GOOGLE_PLUS_KEY = '144970166473-2s4duvd0q88q1apm43k7fkvlr7ips0i7.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '9QmUjsKeCpVD0GYW4PwhpUoG'
-SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/'   # здесь мог бы быть ваш редирект
+SOCIAL_AUTH_RAISE_EXCEPTIONS = True
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '144970166473-2s4duvd0q88q1apm43k7fkvlr7ips0i7.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '9QmUjsKeCpVD0GYW4PwhpUoG'
+SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account'   # здесь мог бы быть ваш редирект
 SOCIAL_AUTH_GOOGLE_OAUTH2_USE_UNIQUE_USER_ID = True
 
+# SOCIAL_AUTH_GOOGLE_PLUS_KEY = '144970166473-2s4duvd0q88q1apm43k7fkvlr7ips0i7.apps.googleusercontent.com'
+# SOCIAL_AUTH_GOOGLE_PLUS_SECRET = '9QmUjsKeCpVD0GYW4PwhpUoG'
+
+CSRF_COOKIE_SECURE = True
+CORS_ORIGIN_ALLOW_ALL = True
+ROOT_URLCONF = 'DonStockServer.urls'
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1887275517980140'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'l1CBSDO8t8o3ho1qxJaBygMD5ys'

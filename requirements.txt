@@ -5,3 +5,5 @@ Pillow == 5.0.0
 # django-rest-framework-social-oauth2 == 1.1.0
 -e git+git://github.com/PhilipGarnero/django-rest-framework-social-oauth2.git#egg=django-rest-framework-social-oauth2
 psycopg2 == 2.7.4
+django-cors-headers == 2.2.0
+rest_social_auth == 1.1.0
