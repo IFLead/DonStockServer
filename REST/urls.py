@@ -14,14 +14,20 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth.decorators import login_required
-from django.urls import path, include
+#from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
 from REST.views import ShopList, Votes
 
+# urlpatterns = [
+#     path('shops/', ShopList.as_view()),
+#     path('votes/', Votes.as_view()),
+# ]
+
 urlpatterns = [
-    path('shops/', ShopList.as_view()),
-    path('votes/', Votes.as_view()),
+    url(r'^shops/', ShopList.as_view()),
+    url(r'^votes/', Votes.as_view()),
 ]
