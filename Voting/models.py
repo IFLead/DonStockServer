@@ -1,9 +1,8 @@
-from math import sqrt
-
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.fields import GenericForeignKey
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
+from math import sqrt
 
 UP = 1
 NO = 0

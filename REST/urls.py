@@ -20,7 +20,7 @@ from django.contrib import admin
 from django.contrib.auth.decorators import login_required
 #from django.urls import path, include
 from rest_framework.urlpatterns import format_suffix_patterns
-from REST.views import ShopList, Votes
+from REST.views import ShopList, Votes, Categories
 
 # urlpatterns = [
 #     path('shops/', ShopList.as_view()),
@@ -30,4 +30,5 @@ from REST.views import ShopList, Votes
 urlpatterns = [
     url(r'^shops/', ShopList.as_view()),
     url(r'^votes/', Votes.as_view()),
+    url(r'^categories/', Categories.as_view()),
 ]
