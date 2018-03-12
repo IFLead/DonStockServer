@@ -32,7 +32,7 @@ class ShopList(APIView):
 class Votes(APIView):
 
     @method_decorator(login_required)
-    def post(self, request, format=None):
+    def post(self, request):
         # if if_authorized(request.user) and 'action' in request.POST and 'shop' in request.POST:
         action = request.data.get('action')
         shop_id = request.data.get('shop')
@@ -57,6 +57,6 @@ def if_authorized(user):
 
 @csrf_exempt
 @api_view(['POST'])
-def check_token(request, format=None):
+def check_token(request):
     token = Token.objects.filter(key=request.data['token'])
     return JsonResponse({"status": len(token) > 0})
