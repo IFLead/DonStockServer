@@ -10,7 +10,9 @@ from rest_framework.views import APIView
 
 from Voting.models import Vote
 from .models import Shop
+from .models import Category
 from .serializers import ShopSerializer
+from .serializers import CategorySerializer
 
 
 # Create your views here.
@@ -27,6 +29,14 @@ class ShopList(APIView):
             for shop in shops:
                 shop['vote_status'] = 0 if shop['id'] not in user_votes else user_votes[shop['id']]
         return Response(shops)
+
+
+class Categories(APIView):
+    def get(self, request):
+        categories = Category.objects.all()
+        serializer = CategorySerializer(categories, many=True)
+        categories = serializer.data
+        return Response(categories)
 
 
 class Votes(APIView):
