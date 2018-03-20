@@ -52,7 +52,7 @@ class _VotableManager(models.Manager):
 
     def vote(self, user_id, action):
         try:
-            result = True
+            result = 0
             # with transaction.atomic():
             # self.instance = self.model.objects.select_for_update().get(
             #     pk=self.instance.pk)
@@ -70,20 +70,24 @@ class _VotableManager(models.Manager):
                 result = vote.action
                 vote.save()
 
-                up_field = Vote.ACTION_FIELD.get(UP)
-                down_field = Vote.ACTION_FIELD.get(DOWN)
-
-                setattr(self.instance, up_field,
-                        Vote.objects.filter(action=UP, content_object=self.instance).count())
-                setattr(self.instance, down_field,
-                        Vote.objects.filter(action=DOWN, content_object=self.instance).count())
-                self.instance.save()
 
             except Vote.DoesNotExist:
                 Vote.objects.create(user_id=user_id,
                                     content_type=content_type,
                                     object_id=self.instance.pk,
                                     action=action)
+
+                result = action
+
+            up_field = Vote.ACTION_FIELD.get(UP)
+            down_field = Vote.ACTION_FIELD.get(DOWN)
+
+            setattr(self.instance, up_field,
+                    Vote.objects.filter(action=UP, content_object=self.instance).count())
+            setattr(self.instance, down_field,
+                    Vote.objects.filter(action=DOWN, content_object=self.instance).count())
+            setattr(self.instance, 'rating', self.instance.calculate_vote_score)
+            self.instance.save()
 
             return True, result
         except (OperationalError, IntegrityError):
