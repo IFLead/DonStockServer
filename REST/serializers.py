@@ -27,6 +27,10 @@ class ShopSerializer(serializers.ModelSerializer):
 		model = Shop
 		fields = '__all__'
 
+	def create(self, validated_data):
+		shop = Shop.objects.create(**validated_data)
+		return shop
+
 
 class CategorySerializer(serializers.ModelSerializer):
 	name = serializers.CharField(required=True)
@@ -39,3 +43,6 @@ class CategorySerializer(serializers.ModelSerializer):
 class ArraySerializer(serializers.Serializer):
 	# Gets a list of Integers
 	categories_array = serializers.ListField(child=serializers.IntegerField())
+
+
+
