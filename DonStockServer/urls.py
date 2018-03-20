@@ -17,14 +17,16 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from REST.views import check_token
+from REST.views import check_token, LogoutSessionView
 
 urlpatterns = [
                   url(r'^api/admin/', admin.site.urls),
                   url(r'^api/', include('REST.urls')),
+
                   url(r'^api/login/', include('rest_social_auth.urls_jwt')),
                   url(r'^api/login/', include('rest_social_auth.urls_token')),
                   url(r'^api/login/', include('rest_social_auth.urls_session')),
+                  url(r'^api/logout/session/$', LogoutSessionView.as_view(), name='logout_session'),
                   url(r'^api/auth/', include('rest_framework_social_oauth2.urls')),
                   url(r'^api/check/', check_token),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

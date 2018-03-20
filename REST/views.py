@@ -1,3 +1,5 @@
+from django.contrib.auth import logout
+from rest_framework import status
 from rest_framework.authtoken.models import Token
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
@@ -41,7 +43,6 @@ class Categories(APIView):
 
 class Votes(APIView):
 
-    @method_decorator(login_required)
     def post(self, request):
         # if if_authorized(request.user) and 'action' in request.POST and 'shop' in request.POST:
         action = request.data.get('action')
@@ -57,6 +58,12 @@ class Votes(APIView):
         return Response(
             {'status': 'OK', 'rating': shop.calculate_vote_score, 'likes': shop.likes,
              'dislikes': shop.dislikes, 'vote_status': status[1]})
+
+class LogoutSessionView(APIView):
+
+    def post(self, request, *args, **kwargs):
+        logout(request)
+        return Response(status=status.HTTP_204_NO_CONTENT)
 
 
 def if_authorized(user):
