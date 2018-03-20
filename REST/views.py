@@ -12,6 +12,7 @@ from .models import Category
 from .models import Shop
 from .serializers import CategorySerializer
 from .serializers import ShopSerializer
+from .serializers import ArraySerializer
 
 
 # Create your views here.
@@ -77,13 +78,13 @@ def add_shop(request):
 		link_three = request.data.get('link_three')
 		user = if_authorized(Token.objects.filter(key=request.data.get('token')).user)
 		description = request.data.get('description')
-		categories = request.data.get('categories')
+		array_serializer = ArraySerializer(data=request.data.get('categories'))
+		categories = array_serializer.data.get('categories_array')
 		Shop.objects.create(name=name, link_one=link_one, link_two=link_two, link_three=link_three, user=user,
 			description=description, categories=categories)
-		return Response({"status": 1})
+		return Response({"status": True})
 	else:
-		return Response({"status": 0})
-
+		return Response({"status": False})
 
 
 @csrf_exempt

@@ -34,3 +34,8 @@ class CategorySerializer(serializers.ModelSerializer):
 	class Meta:
 		model = CategoryModel
 		fields = '__all__'
+
+
+class ArraySerializer(serializers.Serializer):
+	# Gets a list of Integers
+	categories_array = serializers.ListField(child=serializers.IntegerField())
