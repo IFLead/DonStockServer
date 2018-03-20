@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from REST.views import check_token, LogoutSessionView
+from REST.views import check_token, LogoutSessionView, add_shop
 
 urlpatterns = [
                   url(r'^api/admin/', admin.site.urls),
@@ -29,4 +29,5 @@ urlpatterns = [
                   url(r'^api/logout/session/$', LogoutSessionView.as_view(), name='logout_session'),
                   url(r'^api/auth/', include('rest_framework_social_oauth2.urls')),
                   url(r'^api/check/', check_token),
+                  url(r'^api/add_shop/', add_shop),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

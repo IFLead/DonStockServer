@@ -24,6 +24,7 @@ class Shop(VoteModel, models.Model):
 	link_two = models.URLField('Вторая ссылка', blank=True, max_length=255)
 	link_three = models.URLField('Третья ссылка', blank=True, max_length=255)
 	user = models.ForeignKey(User, on_delete=models.CASCADE)
+	description = models.TextField('Описание', blank=False, null=True, max_length=245)
 	categories = models.ManyToManyField(Category, related_name='shops', verbose_name='Категории')
 	rating = models.DecimalField('Общий рейтинг', default=0, decimal_places=2, max_digits=10)
 
