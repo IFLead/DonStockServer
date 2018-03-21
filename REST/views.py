@@ -86,7 +86,7 @@ def append_shops(request):
         shops = Shop.objects.exclude(id__in=ids).order_by('-rating', '-likes', 'dislikes')[:8]
         serializer = ShopSerializer(shops, many=True, context={"request": request})
         shops = serializer.data
-        return Response(shops)
+    return Response(shops)
 
 
 @csrf_exempt
