@@ -80,12 +80,10 @@ def if_authorized(user):
 @csrf_exempt
 @api_view(['POST'])
 def append_shops(request):
-    token = Token.objects.filter(key=request.data.get('token'))
-    if len(token) > 0:
-        ids = request.data.get('ids')
-        shops = Shop.objects.exclude(id__in=ids).order_by('-rating', '-likes', 'dislikes')[:8]
-        serializer = ShopSerializer(shops, many=True, context={"request": request})
-        shops = serializer.data
+    ids = request.data.get('ids')
+    shops = Shop.objects.exclude(id__in=ids).order_by('-rating', '-likes', 'dislikes')[:8]
+    serializer = ShopSerializer(shops, many=True, context={"request": request})
+    shops = serializer.data
     return Response(shops)
 
 
