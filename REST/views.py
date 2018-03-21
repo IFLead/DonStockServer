@@ -17,7 +17,7 @@ from .serializers import ShopSerializer
 # Create your views here.
 class ShopList(APIView):
     def get(self, request):
-        shops = Shop.objects.all().order_by('rating')[:8]
+        shops = Shop.objects.all().order_by('-rating', '-likes', 'dislikes')[:8]
         serializer = ShopSerializer(shops, many=True, context={"request": request})
         content_type = ContentType.objects.get_for_model(Shop)
         shops = serializer.data
@@ -28,7 +28,7 @@ class ShopList(APIView):
             user_votes = {vote['object_id']: vote['action'] for vote in votes}
             # todo: fix bag with vote status
             for shop in shops:
-                shop['vote_status'] = 0 if shop['id'] not in user_votes else user_votes[shop['id']]
+                shop['vote_status'] = user_votes.get(shop['id'], 0)
         return Response(shops)
 
 
@@ -83,7 +83,7 @@ def append_shops(request):
     token = Token.objects.filter(key=request.data.get('token'))
     if len(token) > 0:
         ids = request.data.get('ids')
-        shops = Shop.objects.exclude(id__in=ids).order_by('rating')[:8]
+        shops = Shop.objects.exclude(id__in=ids).order_by('-rating', '-likes', 'dislikes')[:8]
         serializer = ShopSerializer(shops, many=True, context={"request": request})
         shops = serializer.data
         return Response(shops)
