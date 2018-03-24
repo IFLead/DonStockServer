@@ -9,6 +9,6 @@ psycopg2 == 2.7.4
 django-cors-headers == 2.2.0
 rest_social_auth == 1.1.0
 social-auth-app-django == 2.1.0
-djangorestframework-jwt == 1.11.0
-boto3 == 1.6.6
-django-storages == 1.6.5
+#djangorestframework-jwt == 1.11.0
+#boto3 == 1.6.6
+#django-storages == 1.6.5

@@ -46,8 +46,8 @@ INSTALLED_APPS = [
     'rest_social_auth',
     'oauth2_provider',
     'rest_framework_social_oauth2',
-
-    'storages',
+    #
+    # 'storages',
 ]
 
 MIDDLEWARE = [
@@ -148,7 +148,8 @@ SOCIAL_AUTH_FACEBOOK_KEY = '1887275517980140'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'b64d6d8b9d38416435509c4ec7c80a91'
 
 CSRF_COOKIE_SECURE = True
-CORS_ORIGIN_ALLOW_ALL = True
+if DEBUG:
+    CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'DonStockServer.urls'
 
 # Password validation
