@@ -1,6 +1,8 @@
 from django.contrib.auth import logout
 from django.contrib.contenttypes.models import ContentType
 from django.views.decorators.csrf import csrf_exempt
+import base64
+from django.core.files.base import ContentFile
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.decorators import api_view
@@ -8,7 +10,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from Voting.models import Vote
-from .models import Category
+from .models import Category, Photo
 from .models import Shop
 from .serializers import CategorySerializer
 from .serializers import ShopSerializer
@@ -103,6 +105,15 @@ def add_shop(request):
         # array_serializer.is_valid(raise_exception=True)
         # categories = array_serializer.data.get('categories_array')
         shop.save()
+
+        for data in request.data.get('mainPhoto')[:1] + request.data.get('otherPhotos')[:9]:
+            format, imgstr = data['dataURL'].split(';base64,')
+            new = Photo()
+            #todo: may be replace old photo
+            new.photo = ContentFile(base64.b64decode(imgstr), name=data['upload']['filename'])
+            new.shop = shop
+            new.save()
+
         shop.categories.add(*request.data.get('categories'))
         shop.save()
         return Response({"status": True})

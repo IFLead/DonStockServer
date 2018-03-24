@@ -1,4 +1,4 @@
-FROM python:3.6.3
+FROM python:3.6
 
 ENV APP_USER donstock
 ENV APP_ROOT /donstock

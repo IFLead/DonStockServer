@@ -24,7 +24,7 @@ SECRET_KEY = '9=ya6d9mb70y1zf^6fh$($2i&n-vv^43t!a^*0xgs2#iwb(x+@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['donstock.ml', '127.0.0.1', 'localhost', 'test.c']
+ALLOWED_HOSTS = ['donline.co', '127.0.0.1', 'localhost']
 
 # Application definition
 
