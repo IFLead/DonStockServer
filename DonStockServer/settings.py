@@ -147,7 +147,7 @@ SOCIAL_AUTH_GOOGLE_OAUTH2_USE_UNIQUE_USER_ID = True
 SOCIAL_AUTH_FACEBOOK_KEY = '1887275517980140'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'b64d6d8b9d38416435509c4ec7c80a91'
 
-CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_SECURE = False
 if DEBUG:
     CORS_ORIGIN_ALLOW_ALL = True
 ROOT_URLCONF = 'DonStockServer.urls'
@@ -200,9 +200,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.0/howto/static-files/
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static")
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static")
+# ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
 STATIC_URL = '/static/'
 

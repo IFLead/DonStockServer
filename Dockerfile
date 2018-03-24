@@ -17,4 +17,6 @@ RUN pip install -r requirements.txt
 
 RUN chmod -R 777 media
 
+RUN python manage.py collectstatic --noinput
+
 USER ${APP_USER}
