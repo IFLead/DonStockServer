@@ -24,7 +24,7 @@ SECRET_KEY = '9=ya6d9mb70y1zf^6fh$($2i&n-vv^43t!a^*0xgs2#iwb(x+@'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['donline.co', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['donline.co', '165.227.163.99:8001', '127.0.0.1', 'localhost']
 
 # Application definition
 
@@ -138,7 +138,8 @@ SOCIAL_AUTH_URL_NAMESPACE = 'social'
 SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account'  # здесь мог бы быть ваш редирект
 
 SOCIAL_AUTH_VK_OAUTH2_KEY = '6331649'
-SOCIAL_AUTH_VK_OAUTH2_SECRET = 'xU60LE2ww7hGuy7fURck'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'GoMnPteHGU46rmo9MltU'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '144970166473-2s4duvd0q88q1apm43k7fkvlr7ips0i7.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '9QmUjsKeCpVD0GYW4PwhpUoG'
