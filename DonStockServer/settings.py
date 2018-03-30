@@ -140,13 +140,16 @@ SOCIAL_AUTH_LOGIN_REDIRECT_URL = '/account'  # здесь мог бы быть �
 SOCIAL_AUTH_VK_OAUTH2_KEY = '6331649'
 SOCIAL_AUTH_VK_OAUTH2_SECRET = 'GoMnPteHGU46rmo9MltU'
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
+#https://vk.com/editapp?id=6331649&section=info
 
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '144970166473-2s4duvd0q88q1apm43k7fkvlr7ips0i7.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '9QmUjsKeCpVD0GYW4PwhpUoG'
 SOCIAL_AUTH_GOOGLE_OAUTH2_USE_UNIQUE_USER_ID = True
+#https://console.developers.google.com/apis/credentials?project=donstock-192113
 
 SOCIAL_AUTH_FACEBOOK_KEY = '1887275517980140'
 SOCIAL_AUTH_FACEBOOK_SECRET = 'b64d6d8b9d38416435509c4ec7c80a91'
+#https://developers.facebook.com/apps/1887275517980140/settings/basic/
 
 CSRF_COOKIE_SECURE = False
 if DEBUG:

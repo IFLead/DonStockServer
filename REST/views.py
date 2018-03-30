@@ -116,7 +116,11 @@ def add_shop(request):
 
         shop.categories.add(*request.data.get('categories'))
         shop.save()
-        return Response({"status": True})
+
+        shops = Shop.objects.filter(id__exact=shop.id)
+        serializer = ShopSerializer(shops, many=True, context={"request": request})
+        shops = serializer.data
+        return Response({"status": True, **shops[0]})
     else:
         return Response({"status": False})
 
