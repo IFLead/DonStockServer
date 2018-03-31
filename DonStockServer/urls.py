@@ -17,7 +17,7 @@ from django.conf import settings
 from django.conf.urls import url, include
 from django.conf.urls.static import static
 from django.contrib import admin
-from REST.views import check_token, LogoutSessionView, add_shop, append_shops
+from REST.views import check_token, LogoutSessionView, add_shop, append_shops, get_all_shops_for_user
 
 urlpatterns = [
                   url(r'^api/admin/', admin.site.urls),
@@ -31,4 +31,5 @@ urlpatterns = [
                   url(r'^api/check/', check_token),
                   url(r'^api/add_shop/', add_shop),
                   url(r'^api/append_shops/', append_shops),
+                  url(r'^api/get_all_shops_for_user/', get_all_shops_for_user),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
