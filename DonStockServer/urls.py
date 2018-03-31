@@ -31,5 +31,5 @@ urlpatterns = [
                   url(r'^api/check/', check_token),
                   url(r'^api/add_shop/', add_shop),
                   url(r'^api/append_shops/', append_shops),
-                  url(r'^api/get_all_shops_for_user/', get_all_shops_for_user),
+                  url(r'^api/my-shops/', get_all_shops_for_user),
               ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

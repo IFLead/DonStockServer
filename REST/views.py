@@ -134,8 +134,18 @@ def check_token(request):
 
 
 @csrf_exempt
-@api_view(['POST'])
+@api_view(['GET'])
 def get_all_shops_for_user(request):
-	token = Token.objects.filter(key=request.data.get('token'))
+	token = Token.objects.filter(key=request._request.GET.get('token'))
 	if len(token) > 0:
-		Response(Shop.objects.filter(user=token[0].user))
+		shops = Shop.objects.filter(user_id=token[0].user_id).order_by('-rating', '-likes', 'dislikes')[:8]
+		serializer = ShopSerializer(shops, many=True, context={"request": request})
+		content_type = ContentType.objects.get_for_model(Shop)
+		shops = serializer.data
+		votes = Vote.objects.filter(user_id=token[0].user, content_type=content_type).values('object_id',
+																							 'action')
+		user_votes = {vote['object_id']: vote['action'] for vote in votes}
+		# todo: fix bag with vote status
+		for shop in shops:
+			shop['vote_status'] = user_votes.get(shop['id'], 0)
+		return Response(shops)
